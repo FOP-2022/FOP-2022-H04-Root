@@ -1,4 +1,4 @@
-package H04;
+package h04;
 
 public interface WithNaturalCoordinates {
 
