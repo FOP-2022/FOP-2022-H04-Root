@@ -1,6 +1,6 @@
 package h04;
 
-public class FloorVector implements WithNaturalCoordinates{
+public class FloorVector implements WithNaturalCoordinates {
 
   private double x;
   private double y;
@@ -55,45 +55,39 @@ public class FloorVector implements WithNaturalCoordinates{
     this.secondAxis = secondAxis;
   }
 
+  private int getValueForAxis(Axis axis) {
+    return switch (axis) {
+      case X -> (int) x;
+      case Y -> (int) y;
+      case Z -> (int) z;
+    };
+  }
+
   @Override
   public int getX() {
-    switch (firstAxis) {
-      case X: return (int)x;
-      case Y: return (int)y;
-      case Z: return (int)z;
-    }
-    return -1;
+    return getValueForAxis(firstAxis);
   }
 
   @Override
   public int getY() {
-    switch (secondAxis) {
-      case X: return (int)x;
-      case Y: return (int)y;
-      case Z: return (int)z;
+    return getValueForAxis(secondAxis);
+  }
+
+  private void setValueForAxis(Axis axis, int value) {
+    switch (axis) {
+      case X -> setRealX(value);
+      case Y -> setRealY(value);
+      case Z -> setRealZ(value);
     }
-    return -1;
   }
 
   @Override
   public void setX(int x) {
-    switch (firstAxis) {
-      case X: setRealX(x); break;
-      case Y: setRealY(x); break;
-      case Z: setRealZ(x); break;
-    }
-
+    setValueForAxis(firstAxis, x);
   }
 
   @Override
   public void setY(int y) {
-    switch (secondAxis) {
-      case X: setRealX(y); break;
-      case Y: setRealY(y); break;
-      case Z: setRealZ(y); break;
-    }
+    setValueForAxis(secondAxis, y);
   }
-
-
-
 }

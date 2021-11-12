@@ -1,20 +1,19 @@
 package h04;
 
-public class ArrayTesterImpl  implements ArrayTester{
-
+public class ArrayTesterImpl implements ArrayTester {
 
   @Override
-  public boolean test1(WithNaturalCoordinates[] array3) {
+  public boolean test1(RepetitiveRobot[] array1) {
     return false;
   }
 
   @Override
-  public boolean test2(WithNaturalCoordinates[] array3) {
+  public boolean test3(WithNaturalCoordinates[] array3) {
     return false;
   }
 
   @Override
-  public boolean test3(RepetitiveRobot[] array4) {
+  public boolean test4(WithNaturalCoordinates[] array3) {
     return false;
   }
 

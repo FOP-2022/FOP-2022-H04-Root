@@ -4,17 +4,15 @@ import fopbot.*;
 
 public class RepetitiveRobotImpl extends Robot implements WithNaturalCoordinates, RepetitiveRobot {
 
-  private int moveRepetitions = 0; //ggf. repetitionsMove etc
+  private int moveRepetitions = 0;
   private int turnLeftRepetitions = 0;
   private int pickCoinRepetitions = 0;
   private int putCoinRepetitions = 0;
-
 
   public RepetitiveRobotImpl(int n) {
     super(0, 0, Direction.UP, 100);
     putCoin(n);
   }
-
 
   @Override
   public void setX(int x) {
@@ -28,50 +26,54 @@ public class RepetitiveRobotImpl extends Robot implements WithNaturalCoordinates
 
   @Override
   public void move(int n) {
-    if(n < 0){
+    if (n < 0) {
       crash();
     }
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) {
       move();
+    }
 
-    moveRepetitions +=n;
+    moveRepetitions += n;
   }
 
   @Override
   public void turnLeft(int n) {
-    if(n < 0){
+    if (n < 0) {
       crash();
     }
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) {
       turnLeft();
+    }
 
-    turnLeftRepetitions +=n;
+    turnLeftRepetitions += n;
   }
 
   @Override
   public void putCoin(int n) {
-    if(n < 0){
+    if (n < 0) {
       crash();
     }
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) {
       putCoin();
+    }
 
-    putCoinRepetitions +=n;
+    putCoinRepetitions += n;
   }
 
   @Override
   public void pickCoin(int n) {
-    if(n < 0){
+    if (n < 0) {
       crash();
     }
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) {
       pickCoin();
+    }
 
-    pickCoinRepetitions +=n;
+    pickCoinRepetitions += n;
   }
 
   @Override
@@ -85,13 +87,12 @@ public class RepetitiveRobotImpl extends Robot implements WithNaturalCoordinates
   }
 
   @Override
-  public int getputCoinRepetitions() {
+  public int getPutCoinRepetitions() {
     return putCoinRepetitions;
   }
 
   @Override
-  public int getpickCoinRepetitions() {
+  public int getPickCoinRepetitions() {
     return pickCoinRepetitions;
   }
-
 }
