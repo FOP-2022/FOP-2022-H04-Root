@@ -56,11 +56,16 @@ public class FloorVector implements WithNaturalCoordinates {
   }
 
   private int getValueForAxis(Axis axis) {
-    return switch (axis) {
-      case X -> (int) x;
-      case Y -> (int) y;
-      case Z -> (int) z;
-    };
+    switch (axis) {
+      case X:
+        return (int) x;
+      case Y:
+        return (int) y;
+      case Z:
+        return (int) z;
+      default:
+        throw new IllegalArgumentException();
+    }
   }
 
   @Override
@@ -75,9 +80,17 @@ public class FloorVector implements WithNaturalCoordinates {
 
   private void setValueForAxis(Axis axis, int value) {
     switch (axis) {
-      case X -> setRealX(value);
-      case Y -> setRealY(value);
-      case Z -> setRealZ(value);
+      case X:
+        x = value;
+        break;
+      case Y:
+        y = value;
+        break;
+      case Z:
+        z = value;
+        break;
+      default:
+        throw new IllegalArgumentException();
     }
   }
 
