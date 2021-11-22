@@ -4,77 +4,57 @@ public class ArrayTesterImpl implements ArrayTester {
 
   @Override
   public boolean test1(RepetitiveRobot[] array1) {
-    return false;
+    for(int i = 0; i < array1.length; i++){
+      if(array1[i].getPutCoinRepetitions() != i) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  private static int getValueForAxisAndIndex(Axis axis, int i){
+    switch (axis) {
+      case X:
+        return 3*i;
+      case Y:
+        return 4*i;
+      case Z:
+        return 5*i;
+      default:
+        throw new IllegalArgumentException();
+    }
   }
 
   @Override
   public boolean test3(WithNaturalCoordinates[] array3) {
-    return false;
+    for(int i = 0; i < array3.length/2; i++){
+      //RepetitiveRobotImpl an 2*i
+      if(array3[2*i].getX() != 2*i || array3[2*i].getY() != i){
+        return false;
+      }
+
+      //FloorVector an 2*i+1
+      if(array3[2*i+1].getX() != getValueForAxisAndIndex(Axis.values()[i % 3], i) || array3[2*i+1].getY() != getValueForAxisAndIndex(Axis.values()[(i + 1) % 3], i)){
+        return false;
+      }
+    }
+    return true;
   }
 
   @Override
-  public boolean test4(WithNaturalCoordinates[] array3) {
-    return false;
-  }
-
-
-
-
-  /*
-  private boolean check1() {
-    //check all: violation -> return false;
-
-    for(int i = 0; i < BASIC_ARRAY_SIZE; i++) {
-      if(testArray3[2*i].getX() != 2*i || testArray3[2*i].getY() != i)
+  public boolean test4(WithNaturalCoordinates[] array4) {
+    for(int i = 0; i < array4.length/2; i++){
+      //FloorVector an 2*i
+      if(array4[2*i].getX() != getValueForAxisAndIndex(Axis.values()[i % 3], i) || array4[2*i].getY() != getValueForAxisAndIndex(Axis.values()[(i + 1) % 3], i)){
         return false;
+      }
 
-      //x = 3i, y=4i, z=5i
-      if(i % 3 == 0) {//x,y
-        if(testArray3[2*i + 1].getX() != 3*i || testArray3[2*i + 1].getY() != 4*i)
-          return false;
-      }else if(i % 3 == 1) {//y,z
-        if(testArray3[2*i + 1].getX() != 4*i || testArray3[2*i + 1].getY() != 5*i)
-          return false;
-      }else {//z, x
-        if(testArray3[2*i + 1].getX() != 5*i || testArray3[2*i + 1].getY() != 3*i)
-          return false;
+      //RepetitiveRobotImpl an 2*i+1
+      if(array4[2*i+1].getX() != 2*i || array4[2*i+1].getY() != i){
+        return false;
       }
     }
-
     return true;
   }
 
-  private boolean check2() {
-    //check all: violation -> return false;
-    for(int i = 0; i < BASIC_ARRAY_SIZE; i++) {
-      if(testArray3[2*i+1].getX() != 2*i || testArray3[2*i+1].getY() != i)
-        return false;
-
-      //x = 3i, y=4i, z=5i
-      if(i % 3 == 0) {//x,y
-        if(testArray3[2*i].getX() != 3*i || testArray3[2*i].getY() != 4*i)
-          return false;
-      }else if(i % 3 == 1) {//y,z
-        if(testArray3[2*i].getX() != 4*i || testArray3[2*i].getY() != 5*i)
-          return false;
-      }else {//z, x
-        if(testArray3[2*i].getX() != 5*i || testArray3[2*i].getY() != 3*i)
-          return false;
-      }
-    }
-
-    return true;
-  }
-
-  private boolean check3() {
-    //check all: violation -> return false;
-
-    for(int i = 0; i < BASIC_ARRAY_SIZE; i++) {
-      if(testArray4[i].getClockDirection() != (i % 4 == 0 ? 12 : 3*(i % 4)))
-        return false;
-    }
-
-    return true;
-  }
-   */
 }

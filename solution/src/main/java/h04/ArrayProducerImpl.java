@@ -44,11 +44,9 @@ public class ArrayProducerImpl implements ArrayProducer {
   @Override
   public WithNaturalCoordinates[] produceArray4(WithNaturalCoordinates[] array) {
     WithNaturalCoordinates[] array4 = new WithNaturalCoordinates[array.length];
-    int halfSize = array4.length / 2;
-    for (int i = 0; i < halfSize; i++) {
-      int i2 = 2 * i;
-      array4[i2 + 1] = array[i2];
-      array4[i2] = array[i2 + 1];
+    for (int i = 0; i < array4.length / 2; i++) {
+      array4[2*i + 1] = array[2*i];
+      array4[2*i] = array[2*i + 1];
     }
     return array4;
   }

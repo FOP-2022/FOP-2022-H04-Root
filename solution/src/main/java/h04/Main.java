@@ -8,7 +8,7 @@ public class Main {
   public static int WORLD_SIZE_Y = 10;
   public static int BASIC_ARRAY_SIZE = 5;
 
-  public static boolean ENABLE_CORRECTNESS_CHECK = false; // für H03 ändern
+  public static boolean ENABLE_CORRECTNESS_CHECK = true; // für H03 ändern
 
   public static void main(String[] args) {
     World.setSize(WORLD_SIZE_X, WORLD_SIZE_Y);
