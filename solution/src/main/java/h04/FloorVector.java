@@ -70,12 +70,12 @@ public class FloorVector implements WithNaturalCoordinates {
 
   @Override
   public int getX() {
-    return getValueForAxis(firstAxis);
+    return Math.abs(getValueForAxis(firstAxis));
   }
 
   @Override
   public int getY() {
-    return getValueForAxis(secondAxis);
+    return Math.abs(getValueForAxis(secondAxis));
   }
 
   private void setValueForAxis(Axis axis, int value) {
