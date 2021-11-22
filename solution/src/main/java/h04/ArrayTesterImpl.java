@@ -12,6 +12,12 @@ public class ArrayTesterImpl implements ArrayTester {
     return true;
   }
 
+  /**
+   *
+   * @param axis
+   * @param i Index in array2
+   * @return the expected Value for axis at Index i
+   */
   private static int getValueForAxisAndIndex(Axis axis, int i){
     switch (axis) {
       case X:
