@@ -4,7 +4,8 @@ public interface ArrayTester {
 
   /**
    * Run test1, test2 & test3
-   * @param producer to create all Arrays for Test
+   *
+   * @param producer  to create all Arrays for Test
    * @param arraySize to run Tests
    * @return true, if all test run successful; otherwise false
    */
@@ -17,21 +18,18 @@ public interface ArrayTester {
   }
 
   /**
-   *
    * @param array1 Array, which got produced by produce1
    * @return true, if array follows specification refering to number dropped Coins; otherwise false
    */
   boolean test1(RepetitiveRobot[] array1);
 
   /**
-   *
    * @param array3 Array, which got produced by produce3
    * @return true, if array follows specification refering to x,y,z for FloorVector and position for RepetitiveRobotImpl; otherwise false
    */
   boolean test3(WithNaturalCoordinates[] array3);
 
   /**
-   *
    * @param array4 Array, which got produced by produce4
    * @return true, if array follows specification refering to x,y,z for FloorVector and position for RepetitiveRobotImpl; otherwise false
    */
