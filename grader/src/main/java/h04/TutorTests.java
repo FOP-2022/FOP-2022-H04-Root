@@ -2,15 +2,19 @@ package h04;
 
 import fopbot.World;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class TutorTests {
+
+  public static void setupWorld(int size) {
+    World.reset();
+    World.setSize(size, size);
+    World.setDelay(0);
+    World.setVisible(false);
+  }
 
   public static void checkAttributeExist(Class<?> c, String name, Class<?> type, boolean finalReq) {
     Field f = null;
@@ -94,6 +98,30 @@ public class TutorTests {
     }
     return null;
   }
+
+  public static <C> Object newInstanceOf(Class<C> c, Class<?>[] parameterTypes, Object[] args){
+    Constructor<C> constructor = null;
+
+    try {
+      constructor = c.getDeclaredConstructor(parameterTypes);
+    } catch (NoSuchMethodException e) {
+      fail("Konstruktor von " + c.getName() + " nicht gefunden");
+    }
+
+    try {
+      return constructor.newInstance(args);
+    } catch (InstantiationException e) {
+      fail("InstantiationException for " + c.getName());
+    } catch (IllegalAccessException e) {
+      fail("IllegalAccessException for " + c.getName());
+    } catch (InvocationTargetException e) {
+      fail("InvocationTargetException for " + c.getName());
+    }
+
+    return null; //never happen
+
+  }
+
 
 
 }
