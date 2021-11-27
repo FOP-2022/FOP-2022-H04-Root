@@ -139,10 +139,6 @@ public class H2_2 {
     TutorTests.callMethod(FloorVector.class, "setSecondAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.Z});
     TutorTests.callMethod(FloorVector.class, "setY", new Class[]{Integer.TYPE}, fvector, new Object[]{55});
     assertEquals(55.0, TutorTests.getAttributeValue(FloorVector.class, "z", fvector),"setY funktioniert für Axis.Z nicht erkennbar korrekt");
-
-
-
-
   }
 
 }
