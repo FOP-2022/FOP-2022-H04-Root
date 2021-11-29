@@ -42,7 +42,7 @@ public class TutorTests {
     f.setAccessible(true);
 
     try {
-      return f.get(obj);
+      return (C)f.get(obj);
     } catch (IllegalAccessException e) {
       fail("Zugriff auf " + name + " nicht möglich!");
     }
@@ -65,7 +65,7 @@ public class TutorTests {
     }
   }
 
-  public static void checkMethodExist(Class<?> c, String name, Class<?>[] parameterTypes, Class<?> returnType) {
+  public static void checkMethodExist(Class<?> c, String name, Class<?>[] parameterTypes, Class<?> returnType, boolean isDeafaultMethod) {
     Method m = null;
     try {
       m = c.getDeclaredMethod(name, parameterTypes);
@@ -74,6 +74,8 @@ public class TutorTests {
     }
     assertEquals(returnType, m.getReturnType(), "Rückgabetyp von " + name + "nicht korrekt.");
     assertTrue(Modifier.isPublic(m.getModifiers()), "Methode " + name + " ist nicht public!");
+    assertEquals(isDeafaultMethod, m.isDefault(), "Default modifierer is falsch");
+
   }
 
 
@@ -86,7 +88,7 @@ public class TutorTests {
     }
 
     try {
-      return m.invoke(obj, args);
+      return (C)m.invoke(obj, args);
     } catch (IllegalAccessException e) {
       fail("Methode " + name + " in " + c.getName() + "nicht aufrufbar (IllegalAccess)");
     } catch (InvocationTargetException e) {
@@ -109,7 +111,7 @@ public class TutorTests {
     }
 
     try {
-      return constructor.newInstance(args);
+      return (C)constructor.newInstance(args);
     } catch (InstantiationException e) {
       fail("InstantiationException for " + c.getName());
     } catch (IllegalAccessException e) {

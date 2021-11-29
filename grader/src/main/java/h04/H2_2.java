@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 
 import java.awt.*;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,11 +31,9 @@ public class H2_2 {
   public void imlementInterfaceCorrect(){
     assertNotEquals(Robot.class, FloorVector.class.getSuperclass());
 
-    Class[] expectedInterfaces = new Class[]{WithNaturalCoordinates.class};
     Class[] actualInterfaces = FloorVector.class.getInterfaces();
-    Arrays.sort(expectedInterfaces);
-    Arrays.sort(actualInterfaces);
-    assertTrue(Arrays.equals(expectedInterfaces, actualInterfaces), "FloorVector implementiert nicht das richtige Interface");
+    assertEquals(1, actualInterfaces.length, "Ungültige Anzahl von Interfaces in FloorVector implementiert");
+    assertEquals(WithNaturalCoordinates.class, actualInterfaces[0], "FloorVector implementiert nicht das Interface WithNaturalCoordinates");
   }
 
   @Test
@@ -90,24 +87,31 @@ public class H2_2 {
 
 
   @Test
-  public void getCorrect(){ //2P // danach abs -> sowohl betrag als auch nicht erlaubt
+  public void getXCorrect(){
     FloorVector fvector = (FloorVector) TutorTests.newInstanceOf(FloorVector.class, new Class[]{Double.TYPE}, new Object[]{17.6});
     fvector.setRealY(4.8);
     fvector.setRealZ(187.9);
 
     TutorTests.callMethod(FloorVector.class, "setFirstAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.X});
-    assertEquals(17, TutorTests.callMethod(FloorVector.class, "getX", new Class[]{}, fvector, new Object[]{}), "getX funktioniert für Axis.X nicht erkennbar korrekt");
+    assertEquals(17, (int)TutorTests.callMethod(FloorVector.class, "getX", new Class[]{}, fvector, new Object[]{}), "getX funktioniert für Axis.X nicht erkennbar korrekt");
     TutorTests.callMethod(FloorVector.class, "setFirstAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.Y});
-    assertEquals(4, TutorTests.callMethod(FloorVector.class, "getX", new Class[]{}, fvector, new Object[]{}), "getX funktioniert für Axis.Y nicht erkennbar korrekt");
+    assertEquals(4, (int)TutorTests.callMethod(FloorVector.class, "getX", new Class[]{}, fvector, new Object[]{}), "getX funktioniert für Axis.Y nicht erkennbar korrekt");
     TutorTests.callMethod(FloorVector.class, "setFirstAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.Z});
-    assertEquals(187, TutorTests.callMethod(FloorVector.class, "getX", new Class[]{}, fvector, new Object[]{}), "getX funktioniert für Axis.Z nicht erkennbar korrekt");
+    assertEquals(187, (int)TutorTests.callMethod(FloorVector.class, "getX", new Class[]{}, fvector, new Object[]{}), "getX funktioniert für Axis.Z nicht erkennbar korrekt");
+  }
+
+  @Test
+  public void getYCorrect(){
+    FloorVector fvector = (FloorVector) TutorTests.newInstanceOf(FloorVector.class, new Class[]{Double.TYPE}, new Object[]{17.6});
+    fvector.setRealY(4.8);
+    fvector.setRealZ(187.9);
 
     TutorTests.callMethod(FloorVector.class, "setSecondAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.X});
-    assertEquals(17, TutorTests.callMethod(FloorVector.class, "getY", new Class[]{}, fvector, new Object[]{}), "getY funktioniert für Axis.X nicht erkennbar korrekt");
+    assertEquals(17, (int)TutorTests.callMethod(FloorVector.class, "getY", new Class[]{}, fvector, new Object[]{}), "getY funktioniert für Axis.X nicht erkennbar korrekt");
     TutorTests.callMethod(FloorVector.class, "setSecondAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.Y});
-    assertEquals(4, TutorTests.callMethod(FloorVector.class, "getY", new Class[]{}, fvector, new Object[]{}), "getY funktioniert für Axis.Y nicht erkennbar korrekt");
+    assertEquals(4, (int)TutorTests.callMethod(FloorVector.class, "getY", new Class[]{}, fvector, new Object[]{}), "getY funktioniert für Axis.Y nicht erkennbar korrekt");
     TutorTests.callMethod(FloorVector.class, "setSecondAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.Z});
-    assertEquals(187, TutorTests.callMethod(FloorVector.class, "getY", new Class[]{}, fvector, new Object[]{}), "getY funktioniert für Axis.Z nicht erkennbar korrekt");
+    assertEquals(187, (int)TutorTests.callMethod(FloorVector.class, "getY", new Class[]{}, fvector, new Object[]{}), "getY funktioniert für Axis.Z nicht erkennbar korrekt");
   }
 
 
@@ -122,23 +126,23 @@ public class H2_2 {
 
     TutorTests.callMethod(FloorVector.class, "setFirstAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.X});
     TutorTests.callMethod(FloorVector.class, "setX", new Class[]{Integer.TYPE}, fvector, new Object[]{3});
-    assertEquals(3.0, TutorTests.getAttributeValue(FloorVector.class, "x", fvector),"setX funktioniert für Axis.X nicht erkennbar korrekt");
+    assertEquals(3.0, (double)TutorTests.getAttributeValue(FloorVector.class, "x", fvector),"setX funktioniert für Axis.X nicht erkennbar korrekt");
     TutorTests.callMethod(FloorVector.class, "setFirstAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.Y});
     TutorTests.callMethod(FloorVector.class, "setX", new Class[]{Integer.TYPE}, fvector, new Object[]{56});
-    assertEquals(56.0, TutorTests.getAttributeValue(FloorVector.class, "y", fvector),"setX funktioniert für Axis.Y nicht erkennbar korrekt");
+    assertEquals(56.0, (double)TutorTests.getAttributeValue(FloorVector.class, "y", fvector),"setX funktioniert für Axis.Y nicht erkennbar korrekt");
     TutorTests.callMethod(FloorVector.class, "setFirstAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.Z});
     TutorTests.callMethod(FloorVector.class, "setX", new Class[]{Integer.TYPE}, fvector, new Object[]{197});
-    assertEquals(197.0, TutorTests.getAttributeValue(FloorVector.class, "z", fvector),"setX funktioniert für Axis.Z nicht erkennbar korrekt");
+    assertEquals(197.0, (double)TutorTests.getAttributeValue(FloorVector.class, "z", fvector),"setX funktioniert für Axis.Z nicht erkennbar korrekt");
 
     TutorTests.callMethod(FloorVector.class, "setSecondAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.X});
     TutorTests.callMethod(FloorVector.class, "setY", new Class[]{Integer.TYPE}, fvector, new Object[]{30});
-    assertEquals(30.0, TutorTests.getAttributeValue(FloorVector.class, "x", fvector),"setY funktioniert für Axis.X nicht erkennbar korrekt");
+    assertEquals(30.0, (double)TutorTests.getAttributeValue(FloorVector.class, "x", fvector),"setY funktioniert für Axis.X nicht erkennbar korrekt");
     TutorTests.callMethod(FloorVector.class, "setSecondAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.Y});
     TutorTests.callMethod(FloorVector.class, "setY", new Class[]{Integer.TYPE}, fvector, new Object[]{65});
-    assertEquals(65.0, TutorTests.getAttributeValue(FloorVector.class, "y", fvector),"setY funktioniert für Axis.Y nicht erkennbar korrekt");
+    assertEquals(65.0, (double)TutorTests.getAttributeValue(FloorVector.class, "y", fvector),"setY funktioniert für Axis.Y nicht erkennbar korrekt");
     TutorTests.callMethod(FloorVector.class, "setSecondAxis", new Class[]{Axis.class}, fvector, new Object[]{Axis.Z});
     TutorTests.callMethod(FloorVector.class, "setY", new Class[]{Integer.TYPE}, fvector, new Object[]{55});
-    assertEquals(55.0, TutorTests.getAttributeValue(FloorVector.class, "z", fvector),"setY funktioniert für Axis.Z nicht erkennbar korrekt");
+    assertEquals(55.0, (double)TutorTests.getAttributeValue(FloorVector.class, "z", fvector),"setY funktioniert für Axis.Z nicht erkennbar korrekt");
   }
 
 }

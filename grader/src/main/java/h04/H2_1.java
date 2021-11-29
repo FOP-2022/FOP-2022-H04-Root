@@ -17,9 +17,8 @@ public class H2_1 {
   public void extendsAndImplementsCorrect(){
     assertEquals(Robot.class, RepetitiveRobotImpl.class.getSuperclass());
 
-    Class[] expectedInterfaces = new Class[]{WithNaturalCoordinates.class, RepetitiveRobot.class};
     Class[] actualInterfaces = RepetitiveRobotImpl.class.getInterfaces();
-    assertEquals(2, actualInterfaces.length, "MEhr Interfaces implementiert als gefordert");
+    assertEquals(2, actualInterfaces.length, "Es müssen exakt 2 Interfaces implementiert werden");
 
     boolean foundRepetitiveRobot = false, foundWithNaturalCoordinates = false;
     for(Class c : actualInterfaces){
@@ -44,7 +43,8 @@ public class H2_1 {
       assertEquals(0, rob.getX());
       assertEquals(0, rob.getY());
       assertEquals(Direction.UP, rob.getDirection());
-      assertEquals(100 - test_element, rob.getNumberOfCoins()); // TODO: Check, if really dropped with putCoin(n)
+      assertEquals(100 - test_element, rob.getNumberOfCoins());
+      assertEquals(test_element, (int)TutorTests.callMethod(RepetitiveRobotImpl.class, "getPutCoinRepetitions", new Class[]{}, rob, new Object[]{}), "Münzen wurden nicht mit putCoin aus RepetitiveRobot abgelegt"); // TODO: Actually nicht so clever, but dono
     }
   }
 
@@ -60,14 +60,14 @@ public class H2_1 {
   public void actionMethodsCorrect(){
     TutorTests.setupWorld(10);
     World.putCoins(0, 0, 10000);
-    actionMethodSingleTest("move", new int[]{2}, (rob) -> rob.getY() == 2, "move nicht korrekt");
-    actionMethodSingleTest("move", new int[]{5, 1}, (rob) -> rob.getY() == 6, "move nicht korrekt");
-    actionMethodSingleTest("turnLeft", new int[]{6}, (rob) -> rob.getDirection() == Direction.DOWN, "turnLeft nicht korrekt");
-    actionMethodSingleTest("turnLeft", new int[]{4}, (rob) -> rob.getDirection() == Direction.UP, "turnLeft nicht korrekt");
-    actionMethodSingleTest("putCoin", new int[]{6}, (rob) -> rob.getNumberOfCoins() == 100-6, "putCoin nicht korrekt");
-    actionMethodSingleTest("putCoin", new int[]{0}, (rob) -> rob.getNumberOfCoins() == 100-0, "putCoin nicht korrekt");
-    actionMethodSingleTest("pickCoin", new int[]{10, 90}, (rob) -> rob.getNumberOfCoins() == 100+100, "pickCoin nicht korrekt");
-    actionMethodSingleTest("pickCoin", new int[]{0, 0}, (rob) -> rob.getNumberOfCoins() == 100+0, "pickCoin nicht korrekt");
+    actionMethodSingleTest("move", new int[]{2}, (rob) -> rob.getY() == 2, "move (einzeln) nicht korrekt");
+    actionMethodSingleTest("move", new int[]{5, 1}, (rob) -> rob.getY() == 6, "move (mehrere) nicht korrekt");
+    actionMethodSingleTest("turnLeft", new int[]{6}, (rob) -> rob.getDirection() == Direction.DOWN, "turnLeft (einzeln) nicht korrekt");
+    actionMethodSingleTest("turnLeft", new int[]{2, 2}, (rob) -> rob.getDirection() == Direction.UP, "turnLeft (mehrere) nicht korrekt");
+    actionMethodSingleTest("putCoin", new int[]{6}, (rob) -> rob.getNumberOfCoins() == 100-6, "putCoin (einzeln) nicht korrekt");
+    actionMethodSingleTest("putCoin", new int[]{1, 0}, (rob) -> rob.getNumberOfCoins() == 100-1, "putCoin (mehrere) nicht korrekt");
+    actionMethodSingleTest("pickCoin", new int[]{10}, (rob) -> rob.getNumberOfCoins() == 100+10, "pickCoin (einzeln) nicht korrekt");
+    actionMethodSingleTest("pickCoin", new int[]{10, 90}, (rob) -> rob.getNumberOfCoins() == 100+100, "pickCoin (mehrere) nicht korrekt");
   }
 
 
@@ -76,7 +76,7 @@ public class H2_1 {
     try {
       TutorTests.callMethod(RepetitiveRobotImpl.class, method, new Class[]{Integer.TYPE}, rob, new Object[]{testVal});
     }catch (RuntimeException e){
-      assertEquals("crash", e.getStackTrace()[0].getMethodName(), "Crash für negative Anzahl von Widerholungen in Methode " + method + " nicht aufgerufen");
+      assertEquals("crash", e.getStackTrace()[0].getMethodName(), "Crash des Robots für negative Anzahl von Widerholungen in Methode " + method + " nicht aufgerufen");
     }
   }
 
@@ -96,14 +96,14 @@ public class H2_1 {
   public void getMethodsCorrect(){
     TutorTests.setupWorld(10);
     World.putCoins(0, 0, 10000);
-    actionMethodSingleTest("move", new int[]{2}, (rob) -> rob.getMoveRepetitions() == 2, "getMoveRepetitions nicht korrekt");
-    actionMethodSingleTest("move", new int[]{5, 1}, (rob) -> rob.getMoveRepetitions() == 6, "getMoveRepetitions nicht korrekt");
-    actionMethodSingleTest("turnLeft", new int[]{6, 3}, (rob) -> rob.getTurnLeftRepetitions() == 9, "getTurnLeftRepetitions nicht korrekt");
-    actionMethodSingleTest("turnLeft", new int[]{4, 0}, (rob) -> rob.getTurnLeftRepetitions() == 4, "getTurnLeftRepetitions nicht korrekt");
-    actionMethodSingleTest("putCoin", new int[]{6, 1}, (rob) -> rob.getPutCoinRepetitions() == 7, "getPutCoinRepetitions nicht korrekt");
-    actionMethodSingleTest("putCoin", new int[]{0}, (rob) -> rob.getPutCoinRepetitions() == 0, "getPutCoinRepetitions nicht korrekt");
-    actionMethodSingleTest("pickCoin", new int[]{10, 90}, (rob) -> rob.getPickCoinRepetitions() == 100, "getPickCoinRepetitions nicht korrekt");
-    actionMethodSingleTest("pickCoin", new int[]{0, 0}, (rob) -> rob.getPickCoinRepetitions() == 0, "getPickCoinRepetitions nicht korrekt");
+    actionMethodSingleTest("move", new int[]{2}, (rob) -> rob.getMoveRepetitions() == 2, "getMoveRepetitions (einzeln) nicht korrekt");
+    actionMethodSingleTest("move", new int[]{5, 1}, (rob) -> rob.getMoveRepetitions() == 6, "getMoveRepetitions (mehrere) nicht korrekt");
+    actionMethodSingleTest("turnLeft", new int[]{6}, (rob) -> rob.getTurnLeftRepetitions() == 6, "getTurnLeftRepetitions (einzeln)  nicht korrekt");
+    actionMethodSingleTest("turnLeft", new int[]{4, 1}, (rob) -> rob.getTurnLeftRepetitions() == 5, "getTurnLeftRepetitions (mehrere) nicht korrekt");
+    actionMethodSingleTest("putCoin", new int[]{6, 1}, (rob) -> rob.getPutCoinRepetitions() == 7, "getPutCoinRepetitions (mehrere) nicht korrekt");
+    actionMethodSingleTest("putCoin", new int[]{0}, (rob) -> rob.getPutCoinRepetitions() == 0, "getPutCoinRepetitions (einzeln) nicht korrekt");
+    actionMethodSingleTest("pickCoin", new int[]{10, 90}, (rob) -> rob.getPickCoinRepetitions() == 100, "getPickCoinRepetitions (mehrere) nicht korrekt");
+    actionMethodSingleTest("pickCoin", new int[]{1}, (rob) -> rob.getPickCoinRepetitions() == 1, "getPickCoinRepetitions (einzeln) nicht korrekt");
   }
 
   @Test
@@ -113,7 +113,7 @@ public class H2_1 {
     TutorTests.setupWorld(10);
     RepetitiveRobotImpl rob = (RepetitiveRobotImpl) TutorTests.newInstanceOf(RepetitiveRobotImpl.class, new Class[]{Integer.TYPE}, new Object[]{0});
 
-    for(int test_element : test_vec){
+    for(int test_element : test_vec){ //Runtime Crash wird nicht gefangen
       rob.setX(test_element);
       rob.setY(test_element);
     }

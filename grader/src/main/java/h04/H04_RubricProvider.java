@@ -198,17 +198,24 @@ public class H04_RubricProvider implements RubricProvider {
     ).build();
 
   public static final Criterion H2_2_T8 = Criterion.builder()
-    .shortDescription("Die Methoden get{X, Y} aus WithNaturalCoordinates sind in FloorVector korrekt umgesetzt")
-    .maxPoints(2)
-    .minPoints(0)
+    .shortDescription("Die Methoden getX aus WithNaturalCoordinates ist in FloorVector korrekt umgesetzt")
     .grader(Grader.testAwareBuilder()
-      .requirePass(JUnitTestRef.ofMethod(() -> H2_2.class.getMethod("getCorrect")))
+      .requirePass(JUnitTestRef.ofMethod(() -> H2_2.class.getMethod("getXCorrect")))
       .pointsPassedMax()
       .pointsFailedMin()
       .build()
     ).build();
 
   public static final Criterion H2_2_T9 = Criterion.builder()
+    .shortDescription("Die Methoden getY aus WithNaturalCoordinates ist in FloorVector korrekt umgesetzt")
+    .grader(Grader.testAwareBuilder()
+      .requirePass(JUnitTestRef.ofMethod(() -> H2_2.class.getMethod("getYCorrect")))
+      .pointsPassedMax()
+      .pointsFailedMin()
+      .build()
+    ).build();
+
+  public static final Criterion H2_2_T10 = Criterion.builder()
     .shortDescription("Die Methoden set{X, Y} aus WithNaturalCoordinates sind in FloorVector korrekt umgesetzt")
     .grader(Grader.testAwareBuilder()
       .requirePass(JUnitTestRef.ofMethod(() -> H2_2.class.getMethod("setCorrect")))
@@ -229,7 +236,8 @@ public class H04_RubricProvider implements RubricProvider {
       H2_2_T6,
       H2_2_T7,
       H2_2_T8,
-      H2_2_T9
+      H2_2_T9,
+      H2_2_T10
     )
     .build();
 
@@ -273,6 +281,11 @@ public class H04_RubricProvider implements RubricProvider {
       .build()
     ).build();
 
+  public static final Criterion H3_1_T5 = Criterion.builder()
+    .shortDescription("Die Methoden funktionieren für verschiedene Längen erkennbar korrekt")
+    .maxPoints(0)
+    .minPoints(-1)
+    .build();
 
 
   public static final Criterion H3_1 = Criterion.builder()
@@ -281,7 +294,8 @@ public class H04_RubricProvider implements RubricProvider {
       H3_1_T1,
       H3_1_T2,
       H3_1_T3,
-      H3_1_T4
+      H3_1_T4,
+      H3_1_T5
     )
     .build();
 
@@ -323,6 +337,11 @@ public class H04_RubricProvider implements RubricProvider {
       .build()
     ).build();
 
+  public static final Criterion H3_2_T5 = Criterion.builder()
+    .shortDescription("Die Methoden funktionieren für verschiedene Längen erkennbar korrekt")
+    .maxPoints(0)
+    .minPoints(-1)
+    .build();
 
   public static final Criterion H3_2 = Criterion.builder()
     .shortDescription("H3.2 Prüfen der Testarrays")
@@ -330,7 +349,8 @@ public class H04_RubricProvider implements RubricProvider {
       H3_2_T1,
       H3_2_T2,
       H3_2_T3,
-      H3_2_T4
+      H3_2_T4,
+      H3_2_T5
     )
     .build();
 

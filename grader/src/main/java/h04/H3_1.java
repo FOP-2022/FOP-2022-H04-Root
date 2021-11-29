@@ -30,9 +30,11 @@ public class H3_1 {
       assertEquals(4*i+0.2, (double)TutorTests.getAttributeValue(FloorVector.class, "y", array2[i]), "y an Index " + i + "nicht korrekt");
       assertEquals(5*i+0.3, (double)TutorTests.getAttributeValue(FloorVector.class, "z", array2[i]), "z an Index " + i + "nicht korrekt");
 
-      assertEquals(Axis.values()[i % 3], (Axis)TutorTests.getAttributeValue(FloorVector.class, "firstAxis", array2[i]), "firstAxis an Index " + i + "nicht korrekt");
-      assertEquals(Axis.values()[(i+1) % 3], (Axis)TutorTests.getAttributeValue(FloorVector.class, "secondAxis", array2[i]), "secondAxis an Index " + i + "nicht korrekt");
-    }//TODO: Problematisch, wenn Student andere Reihenfolge als X, Y, Z
+      Axis[] ax = new Axis[]{Axis.valueOf("X"), Axis.valueOf("Y"),Axis.valueOf("Z")};
+
+      assertEquals(ax[i % 3], (Axis)TutorTests.getAttributeValue(FloorVector.class, "firstAxis", array2[i]), "firstAxis an Index " + i + "nicht korrekt");
+      assertEquals(ax[(i+1) % 3], (Axis)TutorTests.getAttributeValue(FloorVector.class, "secondAxis", array2[i]), "secondAxis an Index " + i + "nicht korrekt");
+    }
   }
 
   @Test
@@ -70,7 +72,8 @@ public class H3_1 {
     assertEquals(array3.length, array4.length);
 
     for(int i = 0; i < array3.length /2; i++){
-      assertEquals(array3[2*i], array4[2*i+1], "produceArray4 (swap) error on Index " + i);
+      assertEquals(array3[2*i], array4[2*i+1], "produceArray4 (swap) error on Index " + 2*i+1);
+      assertEquals(array3[2*i+1], array4[2*i], "produceArray4 (swap) error on Index " + 2*i);
     }
   }
 }
