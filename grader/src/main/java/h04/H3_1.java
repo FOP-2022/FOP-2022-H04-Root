@@ -12,7 +12,7 @@ public class H3_1 {
 
   @Test
   public void produceArray1Correct(){
-    TutorTests.setupWorld(10);
+    TutorTests.setupWorld(2*arraySize);
     ArrayProducer producer = new ArrayProducerImpl();
     RepetitiveRobotImpl[] array1 = producer.produceArray1(arraySize);
     assertEquals(arraySize, array1.length);
@@ -21,7 +21,7 @@ public class H3_1 {
 
   @Test
   public void produceArray2Correct(){
-    TutorTests.setupWorld(10);
+    TutorTests.setupWorld(2*arraySize);
     ArrayProducer producer = new ArrayProducerImpl();
     FloorVector[] array2 = producer.produceArray2(arraySize);
     assertEquals(arraySize, array2.length);
@@ -39,7 +39,7 @@ public class H3_1 {
 
   @Test
   public void produceArray3Correct(){
-    TutorTests.setupWorld(10);
+    TutorTests.setupWorld(2*arraySize);
     ArrayProducer producer = new ArrayProducerImpl();
     Tutor_ArrayProducer tutor_producer = new Tutor_ArrayProducerImpl();
 
@@ -60,7 +60,7 @@ public class H3_1 {
 
   @Test
   public void produceArray4Correct(){
-    TutorTests.setupWorld(10);
+    TutorTests.setupWorld(2*arraySize);
     ArrayProducer producer = new ArrayProducerImpl();
     Tutor_ArrayProducer tutor_producer = new Tutor_ArrayProducerImpl();
 
@@ -76,4 +76,19 @@ public class H3_1 {
       assertEquals(array3[2*i+1], array4[2*i], "produceArray4 (swap) error on Index " + 2*i);
     }
   }
+
+
+  @Test
+  public void produceDifferentSizes(){
+    for(int i : new int[]{6, 2, 10})
+    {
+      arraySize = i;
+      produceArray1Correct();
+      produceArray2Correct();
+      produceArray3Correct();
+      produceArray4Correct();
+    }
+  }
+
+
 }

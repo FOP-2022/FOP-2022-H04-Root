@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestForSubmission("h04")
 public class H3_2 {
 
-  static int arraySize = 5;
+  public static int arraySize = 5;
 
   @Test
   public void test1Correct(){
-    TutorTests.setupWorld(10);
+    TutorTests.setupWorld(2*arraySize);
     Tutor_ArrayProducer tutor_producer = new Tutor_ArrayProducerImpl();
     RepetitiveRobotImpl[] array1 = tutor_producer.produceArray1(arraySize);
 
@@ -38,7 +38,7 @@ public class H3_2 {
 
   @Test
   public void test3RepetitiveRobotImplCorrect(){
-    TutorTests.setupWorld(10);
+    TutorTests.setupWorld(2*arraySize);
     Tutor_ArrayProducer tutor_producer = new Tutor_ArrayProducerImpl();
     RepetitiveRobotImpl[] array1 = tutor_producer.produceArray1(arraySize);
     FloorVector[] array2 = tutor_producer.produceArray2(arraySize);
@@ -64,7 +64,7 @@ public class H3_2 {
 
   @Test
   public void test3FloorVectorCorrect(){
-    TutorTests.setupWorld(10);
+    TutorTests.setupWorld(2*arraySize);
     Tutor_ArrayProducer tutor_producer = new Tutor_ArrayProducerImpl();
     RepetitiveRobotImpl[] array1 = tutor_producer.produceArray1(arraySize);
     FloorVector[] array2 = tutor_producer.produceArray2(arraySize);
@@ -89,7 +89,7 @@ public class H3_2 {
 
   @Test
   public void test4Correct(){
-    TutorTests.setupWorld(10);
+    TutorTests.setupWorld(2*arraySize);
     Tutor_ArrayProducer tutor_producer = new Tutor_ArrayProducerImpl();
     RepetitiveRobotImpl[] array1 = tutor_producer.produceArray1(arraySize);
     FloorVector[] array2 = tutor_producer.produceArray2(arraySize);
@@ -121,4 +121,19 @@ public class H3_2 {
     ((FloorVector)broken_array4[2*(arraySize-1)]).setFirstAxis(Axis.Z);
     assertFalse(tester.test4(broken_array4));
   }
+
+  @Test
+  public void testDifferentSizes(){
+    for(int i : new int[]{6, 2, 10})
+    {
+      arraySize = i;
+      test1Correct();
+      test3FloorVectorCorrect();
+      test3RepetitiveRobotImplCorrect();
+      test4Correct();
+    }
+  }
+
+
+
 }

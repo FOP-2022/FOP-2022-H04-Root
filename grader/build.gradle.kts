@@ -4,5 +4,5 @@ repositories {
 
 dependencies {
   implementation(project(":solution"))
-  implementation("org.sourcegrade:jagr-grader-api:0.2")
+  implementation("org.sourcegrade:jagr-grader-api:0.3-SNAPSHOT")
 }

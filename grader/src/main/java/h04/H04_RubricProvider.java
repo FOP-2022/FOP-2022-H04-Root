@@ -285,7 +285,12 @@ public class H04_RubricProvider implements RubricProvider {
     .shortDescription("Die Methoden funktionieren für verschiedene Längen erkennbar korrekt")
     .maxPoints(0)
     .minPoints(-1)
-    .build();
+    .grader(Grader.testAwareBuilder()
+      .requirePass(JUnitTestRef.ofMethod(() -> H3_1.class.getMethod("produceDifferentSizes")))
+      .pointsPassedMax()
+      .pointsFailedMin()
+      .build()
+    ).build();
 
 
   public static final Criterion H3_1 = Criterion.builder()
@@ -341,7 +346,12 @@ public class H04_RubricProvider implements RubricProvider {
     .shortDescription("Die Methoden funktionieren für verschiedene Längen erkennbar korrekt")
     .maxPoints(0)
     .minPoints(-1)
-    .build();
+    .grader(Grader.testAwareBuilder()
+      .requirePass(JUnitTestRef.ofMethod(() -> H3_2.class.getMethod("testDifferentSizes")))
+      .pointsPassedMax()
+      .pointsFailedMin()
+      .build()
+    ).build();
 
   public static final Criterion H3_2 = Criterion.builder()
     .shortDescription("H3.2 Prüfen der Testarrays")
@@ -359,7 +369,12 @@ public class H04_RubricProvider implements RubricProvider {
 
   public static final Criterion H3_3_T1 = Criterion.builder()
     .shortDescription("testAll() in ArrayTester wurde erkennbar korrekt umgesetzt")
-    .build();
+    .grader(Grader.testAwareBuilder()
+      .requirePass(JUnitTestRef.ofMethod(() -> H3_3.class.getMethod("testAllCorrect")))
+      .pointsPassedMax()
+      .pointsFailedMin()
+      .build()
+    ).build();
 
   public static final Criterion H3_3_T2 = Criterion.builder()
     .shortDescription("Es wurde nur logische Operatoren zur Verknüpfung der einzelnen Tests genutzt")
