@@ -5,4 +5,5 @@ repositories {
 dependencies {
     implementation(project(":solution"))
     implementation("org.sourcegrade:jagr-grader-api:0.3-SNAPSHOT")
+  implementation("fr.inria.gforge.spoon:spoon-core:10.0.0")
 }

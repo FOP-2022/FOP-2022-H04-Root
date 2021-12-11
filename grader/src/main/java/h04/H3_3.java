@@ -1,7 +1,21 @@
 package h04;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
+import org.sourcegrade.jagr.api.testing.SourceFile;
+import org.sourcegrade.jagr.api.testing.TestCycle;
+import org.sourcegrade.jagr.api.testing.extension.TestCycleResolver;
+import spoon.Launcher;
+import spoon.reflect.code.CtConditional;
+import spoon.reflect.code.CtIf;
+import spoon.reflect.code.CtSwitch;
+import spoon.reflect.declaration.CtMethod;
+import spoon.reflect.declaration.CtType;
+import spoon.reflect.visitor.filter.TypeFilter;
+import spoon.support.compiler.VirtualFile;
+
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,7 +112,29 @@ public class H3_3 {
     }
 
     @Test
-    public void logicOperatorUsed() {
-        throw new UnsupportedOperationException();
+    @ExtendWith(TestCycleResolver.class)
+    public void logicOperatorUsed(TestCycle cycle) {
+        String fileName = "ArrayTester.java";
+        SourceFile sourceFile = cycle.getSubmission().getSourceFile(fileName);
+        Launcher spoon = new Launcher();
+        spoon.addInputResource(new VirtualFile(Objects.requireNonNull(sourceFile).getContent(), fileName));
+        spoon.buildModel();
+        CtType<?> type = spoon.getModel().getAllTypes().stream().filter(CtType::isTopLevel).findFirst().orElseThrow();
+        CtMethod<?> method = type.getMethodsByName("testAll").stream().findFirst().orElseThrow();
+
+        // Check for if statements
+        if (!method.getElements(new TypeFilter<>(CtIf.class)).isEmpty()) {
+            fail("If statements are not allowed in method testAll().");
+        }
+
+        // Check for switch statements
+        if (!method.getElements(new TypeFilter<>(CtSwitch.class)).isEmpty()) {
+            fail("Switch statements are not allowed in method testAll().");
+        }
+
+        // Check for ternary operator
+        if (!method.getElements(new TypeFilter<>(CtConditional.class)).isEmpty()) {
+            fail("The ternary operator is not allowed in method testAll().");
+        }
     }
 }
