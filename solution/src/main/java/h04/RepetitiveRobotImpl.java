@@ -4,95 +4,95 @@ import fopbot.*;
 
 public class RepetitiveRobotImpl extends Robot implements WithNaturalCoordinates, RepetitiveRobot {
 
-  private int moveRepetitions = 0;
-  private int turnLeftRepetitions = 0;
-  private int pickCoinRepetitions = 0;
-  private int putCoinRepetitions = 0;
+    private int moveRepetitions = 0;
+    private int turnLeftRepetitions = 0;
+    private int pickCoinRepetitions = 0;
+    private int putCoinRepetitions = 0;
 
-  public RepetitiveRobotImpl(int n) {
-    super(0, 0, Direction.UP, 100);
-    putCoin(n);
-  }
-
-  @Override
-  public void setX(int x) {
-    super.setX(x > 0 ? x : -x);
-  }
-
-  @Override
-  public void setY(int y) {
-    super.setY(y > 0 ? y : -y);
-  }
-
-  @Override
-  public void move(int n) {
-    if (n < 0) {
-      crash();
+    public RepetitiveRobotImpl(int n) {
+        super(0, 0, Direction.UP, 100);
+        putCoin(n);
     }
 
-    for (int i = 0; i < n; i++) {
-      move();
+    @Override
+    public void setX(int x) {
+        super.setX(x > 0 ? x : -x);
     }
 
-    moveRepetitions += n;
-  }
-
-  @Override
-  public void turnLeft(int n) {
-    if (n < 0) {
-      crash();
+    @Override
+    public void setY(int y) {
+        super.setY(y > 0 ? y : -y);
     }
 
-    for (int i = 0; i < n; i++) {
-      turnLeft();
+    @Override
+    public void move(int n) {
+        if (n < 0) {
+            crash();
+        }
+
+        for (int i = 0; i < n; i++) {
+            move();
+        }
+
+        moveRepetitions += n;
     }
 
-    turnLeftRepetitions += n;
-  }
+    @Override
+    public void turnLeft(int n) {
+        if (n < 0) {
+            crash();
+        }
 
-  @Override
-  public void putCoin(int n) {
-    if (n < 0) {
-      crash();
+        for (int i = 0; i < n; i++) {
+            turnLeft();
+        }
+
+        turnLeftRepetitions += n;
     }
 
-    for (int i = 0; i < n; i++) {
-      putCoin();
+    @Override
+    public void putCoin(int n) {
+        if (n < 0) {
+            crash();
+        }
+
+        for (int i = 0; i < n; i++) {
+            putCoin();
+        }
+
+        putCoinRepetitions += n;
     }
 
-    putCoinRepetitions += n;
-  }
+    @Override
+    public void pickCoin(int n) {
+        if (n < 0) {
+            crash();
+        }
 
-  @Override
-  public void pickCoin(int n) {
-    if (n < 0) {
-      crash();
+        for (int i = 0; i < n; i++) {
+            pickCoin();
+        }
+
+        pickCoinRepetitions += n;
     }
 
-    for (int i = 0; i < n; i++) {
-      pickCoin();
+    @Override
+    public int getMoveRepetitions() {
+        return moveRepetitions;
     }
 
-    pickCoinRepetitions += n;
-  }
+    @Override
+    public int getTurnLeftRepetitions() {
+        return turnLeftRepetitions;
+    }
 
-  @Override
-  public int getMoveRepetitions() {
-    return moveRepetitions;
-  }
+    @Override
+    public int getPutCoinRepetitions() {
+        return putCoinRepetitions;
+    }
 
-  @Override
-  public int getTurnLeftRepetitions() {
-    return turnLeftRepetitions;
-  }
-
-  @Override
-  public int getPutCoinRepetitions() {
-    return putCoinRepetitions;
-  }
-
-  @Override
-  public int getPickCoinRepetitions() {
-    return pickCoinRepetitions;
-  }
+    @Override
+    public int getPickCoinRepetitions() {
+        return pickCoinRepetitions;
+    }
 }
