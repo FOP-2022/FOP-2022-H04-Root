@@ -1,5 +1,7 @@
 package h04;
 
+import org.sourcegrade.docwatcher.grading.DocumentationCriterion;
+import org.sourcegrade.docwatcher.grading.DocumentationGrader;
 import org.sourcegrade.jagr.api.rubric.Criterion;
 import org.sourcegrade.jagr.api.rubric.Grader;
 import org.sourcegrade.jagr.api.rubric.JUnitTestRef;
@@ -411,11 +413,37 @@ public class H04_RubricProvider implements RubricProvider {
         )
         .build();
 
-    public static final Criterion JAVADOC = Criterion.builder()
-        .shortDescription("Alle selbstgeschriebenen Methoden wurden korrekt mit JavaDoc dokumentiert")
-        .maxPoints(0)
-        .minPoints(-3)
-        .build();
+    public static final Criterion JAVADOC = DocumentationCriterion.forGrader(
+        DocumentationGrader.builder()
+            .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates"), H1_1)
+            .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates").forMethod("getX"), H1_1)
+            .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates").forMethod("getY"), H1_1)
+            .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates").forMethod("setX", int.class), H1_1)
+            .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates").forMethod("setY", int.class), H1_1)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot"), H1_3)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("move", int.class), H1_3)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("turnLeft", int.class), H1_3)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("putCoin", int.class), H1_3)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("pickCoin", int.class), H1_3)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("getMoveRepetitions"), H1_3)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("getTurnLeftRepetitions"), H1_3)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("getPutCoinRepetitions"), H1_3)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("getPickCoinRepetitions"), H1_3)
+            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobotImpl").forConstructor(int.class), H2_1)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector"), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forConstructor(double.class), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getRealX"), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getRealY"), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getRealZ"), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setRealX", int.class), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setRealY", int.class), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setRealZ", int.class), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getFirstAxis"), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getSecondAxis"), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setFirstAxis", Axis.class), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setSecondAxis", Axis.class), H2_2)
+            .build()
+    );
 
     public static final Rubric RUBRIC = Rubric.builder()
         .title("h04")
