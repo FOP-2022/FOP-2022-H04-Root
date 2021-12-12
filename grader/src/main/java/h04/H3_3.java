@@ -114,8 +114,11 @@ public class H3_3 {
     @Test
     @ExtendWith(TestCycleResolver.class)
     public void logicOperatorUsed(TestCycle cycle) {
-        String fileName = "ArrayTester.java";
+        String fileName = "h04/ArrayTester.java";
         SourceFile sourceFile = cycle.getSubmission().getSourceFile(fileName);
+    if (sourceFile == null) {
+      fail("Method testAll() is not implemented.");
+    }
         Launcher spoon = new Launcher();
         spoon.addInputResource(new VirtualFile(Objects.requireNonNull(sourceFile).getContent(), fileName));
         spoon.buildModel();

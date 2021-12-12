@@ -8,6 +8,7 @@ import org.sourcegrade.jagr.api.rubric.JUnitTestRef;
 import org.sourcegrade.jagr.api.rubric.Rubric;
 import org.sourcegrade.jagr.api.rubric.RubricForSubmission;
 import org.sourcegrade.jagr.api.rubric.RubricProvider;
+import org.sourcegrade.jagr.api.testing.TestCycle;
 
 @RubricForSubmission("h04")
 public class H04_RubricProvider implements RubricProvider {
@@ -385,7 +386,12 @@ public class H04_RubricProvider implements RubricProvider {
 
     public static final Criterion H3_3_T2 = Criterion.builder()
         .shortDescription("Es wurde nur logische Operatoren zur Verknüpfung der einzelnen Tests genutzt")
-        .build();
+        .grader(Grader.testAwareBuilder()
+      .requirePass(JUnitTestRef.ofMethod(() -> H3_3.class.getMethod("logicOperatorUsed", TestCycle.class)))
+      .pointsPassedMax()
+      .pointsFailedMin()
+      .build()
+    ).build();
 
     public static final Criterion H3_3 = Criterion.builder()
         .shortDescription("H3.3 Erstellung und Test zusammenführen")
