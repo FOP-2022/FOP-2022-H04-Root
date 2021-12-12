@@ -1,0 +1,41 @@
+{
+  "name": "FOP-2022-H04",
+  "assignmentIds": [
+    "h04"
+  ],
+  "sourceSets": [
+    {
+      "name": "grader",
+      "files": [
+        "h04\\H1_1.java",
+        "h04\\H1_3.java",
+        "h04\\H2_1.java",
+        "h04\\H2_2.java",
+        "h04\\H3_1.java",
+        "h04\\H3_2.java",
+        "h04\\H3_3.java",
+        "h04\\H04_RubricProvider.java",
+        "h04\\Tutor_ArrayProducer.java",
+        "h04\\Tutor_ArrayProducerImpl.java",
+        "h04\\Tutor_ArrayTester.java",
+        "h04\\Tutor_ArrayTesterImpl.java",
+        "h04\\TutorTests.java"
+      ]
+    },
+    {
+      "name": "solution",
+      "files": [
+        "h04\\ArrayProducer.java",
+        "h04\\ArrayProducerImpl.java",
+        "h04\\ArrayTester.java",
+        "h04\\ArrayTesterImpl.java",
+        "h04\\Axis.java",
+        "h04\\FloorVector.java",
+        "h04\\Main.java",
+        "h04\\RepetitiveRobot.java",
+        "h04\\RepetitiveRobotImpl.java",
+        "h04\\WithNaturalCoordinates.java"
+      ]
+    }
+  ]
+}

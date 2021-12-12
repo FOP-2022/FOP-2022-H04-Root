@@ -11,6 +11,14 @@ import org.sourcegrade.jagr.api.rubric.RubricProvider;
 
 @RubricForSubmission("h04")
 public class H04_RubricProvider implements RubricProvider {
+  // Hack: initialize DI container
+  static {
+    try {
+      Class.forName("org.sourcegrade.docwatcher.DocWatcherModule");
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
     ///////////////////////////////////////////////// H1.1
 
@@ -435,9 +443,9 @@ public class H04_RubricProvider implements RubricProvider {
             .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getRealX"), H2_2)
             .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getRealY"), H2_2)
             .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getRealZ"), H2_2)
-            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setRealX", int.class), H2_2)
-            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setRealY", int.class), H2_2)
-            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setRealZ", int.class), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setRealX", double.class), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setRealY", double.class), H2_2)
+            .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setRealZ", double.class), H2_2)
             .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getFirstAxis"), H2_2)
             .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getSecondAxis"), H2_2)
             .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("setFirstAxis", Axis.class), H2_2)
