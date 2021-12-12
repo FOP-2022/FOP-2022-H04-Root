@@ -12,14 +12,14 @@ import org.sourcegrade.jagr.api.testing.TestCycle;
 
 @RubricForSubmission("h04")
 public class H04_RubricProvider implements RubricProvider {
-  // Hack: initialize DI container
-  static {
-    try {
-      Class.forName("org.sourcegrade.docwatcher.DocWatcherModule");
-    } catch (ClassNotFoundException e) {
-      throw new RuntimeException(e);
+    // Hack: initialize DI container
+    static {
+        try {
+            Class.forName("org.sourcegrade.docwatcher.DocWatcherModule");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
-  }
 
     ///////////////////////////////////////////////// H1.1
 
@@ -387,11 +387,11 @@ public class H04_RubricProvider implements RubricProvider {
     public static final Criterion H3_3_T2 = Criterion.builder()
         .shortDescription("Es wurde nur logische Operatoren zur Verknüpfung der einzelnen Tests genutzt")
         .grader(Grader.testAwareBuilder()
-      .requirePass(JUnitTestRef.ofMethod(() -> H3_3.class.getMethod("logicOperatorUsed", TestCycle.class)))
-      .pointsPassedMax()
-      .pointsFailedMin()
-      .build()
-    ).build();
+            .requirePass(JUnitTestRef.ofMethod(() -> H3_3.class.getMethod("logicOperatorUsed", TestCycle.class)))
+            .pointsPassedMax()
+            .pointsFailedMin()
+            .build()
+        ).build();
 
     public static final Criterion H3_3 = Criterion.builder()
         .shortDescription("H3.3 Erstellung und Test zusammenführen")
