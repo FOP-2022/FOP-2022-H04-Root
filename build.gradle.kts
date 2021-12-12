@@ -1,6 +1,18 @@
 plugins {
     java
 }
+
+tasks {
+    create<Jar>("graderJar") {
+        group = "build"
+        afterEvaluate {
+            archiveFileName.set("FOP-2022-H04-${project.version}.jar")
+            from(project(":grader").sourceSets.main.get().allSource)
+            from(project(":solution").sourceSets.main.get().allSource)
+        }
+    }
+}
+
 allprojects {
     apply(plugin = "java")
     version = "1.0.0-SNAPSHOT"
