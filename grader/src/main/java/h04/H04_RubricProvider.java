@@ -429,12 +429,12 @@ public class H04_RubricProvider implements RubricProvider {
 
     public static final Criterion JAVADOC = DocumentationCriterion.forGrader(
         DocumentationGrader.builder()
-            .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates"), H1_1)
+            //.addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates"), H1_1)
             .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates").forMethod("getX"), H1_1)
             .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates").forMethod("getY"), H1_1)
             .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates").forMethod("setX", int.class), H1_1)
             .addJavaDoc(d -> d.forTopLevelType("WithNaturalCoordinates").forMethod("setY", int.class), H1_1)
-            .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot"), H1_3)
+            //addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot"), H1_3)
             .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("move", int.class), H1_3)
             .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("turnLeft", int.class), H1_3)
             .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("putCoin", int.class), H1_3)
@@ -444,7 +444,7 @@ public class H04_RubricProvider implements RubricProvider {
             .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("getPutCoinRepetitions"), H1_3)
             .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobot").forMethod("getPickCoinRepetitions"), H1_3)
             .addJavaDoc(d -> d.forTopLevelType("RepetitiveRobotImpl").forConstructor(int.class), H2_1)
-            .addJavaDoc(d -> d.forTopLevelType("FloorVector"), H2_2)
+            //.addJavaDoc(d -> d.forTopLevelType("FloorVector"), H2_2)
             .addJavaDoc(d -> d.forTopLevelType("FloorVector").forConstructor(double.class), H2_2)
             .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getRealX"), H2_2)
             .addJavaDoc(d -> d.forTopLevelType("FloorVector").forMethod("getRealY"), H2_2)
