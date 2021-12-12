@@ -1,20 +1,20 @@
 plugins {
-  java
+    java
 }
 allprojects {
-  apply(plugin = "java")
-  repositories {
-    mavenCentral()
-  }
-  java {
-    withSourcesJar()
-  }
-  tasks {
-    jar {
-      archiveFileName.set("${rootProject.name}-${project.name}.jar")
+    apply(plugin = "java")
+    repositories {
+        mavenCentral()
     }
-    named<Jar>("sourcesJar") {
-      archiveFileName.set("${rootProject.name}-${project.name}-sources.jar")
+    java {
+        withSourcesJar()
     }
-  }
+    tasks {
+        jar {
+            archiveFileName.set("${rootProject.name}-${project.name}.jar")
+        }
+        named<Jar>("sourcesJar") {
+            archiveFileName.set("${rootProject.name}-${project.name}-sources.jar")
+        }
+    }
 }
