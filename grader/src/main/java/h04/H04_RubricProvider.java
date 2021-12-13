@@ -6,6 +6,7 @@ import org.sourcegrade.jagr.api.rubric.JUnitTestRef;
 import org.sourcegrade.jagr.api.rubric.Rubric;
 import org.sourcegrade.jagr.api.rubric.RubricForSubmission;
 import org.sourcegrade.jagr.api.rubric.RubricProvider;
+import org.sourcegrade.jagr.api.testing.RubricConfiguration;
 
 @RubricForSubmission("h04")
 public class H04_RubricProvider implements RubricProvider {
@@ -425,5 +426,10 @@ public class H04_RubricProvider implements RubricProvider {
     @Override
     public Rubric getRubric() {
         return RUBRIC;
+    }
+
+    @Override
+    public void configure(RubricConfiguration configuration) {
+        configuration.addFileNameSolutionOverride(Main.class);
     }
 }
