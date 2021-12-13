@@ -16,7 +16,7 @@ public class Main {
         World.setVisible(true);
 
         if (ENABLE_CORRECTNESS_CHECK) {
-            System.out.println("All tests: " + (new ArrayTesterImpl()).testAll(new ArrayProducerImpl(), BASIC_ARRAY_SIZE));
+            // System.out.println("All tests: " + (new ArrayTesterImpl()).testAll(new ArrayProducerImpl(), BASIC_ARRAY_SIZE));
         } else {
             robotTests();
         }
