@@ -2,6 +2,9 @@ package h04;
 
 import fopbot.*;
 
+/**
+ * This is the solution's main class which replaces the submission main class when graded with Jagr.
+ */
 public class Main {
 
     public static int WORLD_SIZE_X = 10;
