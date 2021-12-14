@@ -18,7 +18,7 @@ public class H04_RubricProvider implements RubricProvider {
         try {
             Class.forName("org.sourcegrade.docwatcher.DocWatcherModule");
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            // ignore
         }
     }
 
