@@ -2,28 +2,28 @@ package h04;
 
 public interface RepetitiveRobot {
     /**
-     * Move defined times
+     * Do move defined times
      *
      * @param n defines Repetitions
      */
     void move(int n);
 
     /**
-     * turnLeft defined times
+     * Do turnLeft defined times
      *
      * @param n defines Repetitions
      */
     void turnLeft(int n);
 
     /**
-     * putCoin defined times
+     * Do putCoin defined times
      *
      * @param n defines Repetitions
      */
     void putCoin(int n);
 
     /**
-     * pickCoin defined times
+     * Do pickCoin defined times
      *
      * @param n defines Repetitions
      */
