@@ -9,6 +9,10 @@ public class RepetitiveRobotImpl extends Robot implements WithNaturalCoordinates
     private int pickCoinRepetitions = 0;
     private int putCoinRepetitions = 0;
 
+    /**
+     * Constructor of RepetitiveRobotImpl, which drops specified amount of Coins
+     * @param n Number of Coins to put at the beginning
+     */
     public RepetitiveRobotImpl(int n) {
         super(0, 0, Direction.UP, 100);
         putCoin(n);

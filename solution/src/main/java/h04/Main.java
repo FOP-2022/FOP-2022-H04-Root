@@ -13,6 +13,10 @@ public class Main {
 
     public static boolean ENABLE_CORRECTNESS_CHECK = true; // für H03 ändern
 
+    /**
+     * Creates World and run robotTests() or testAll of ArrayTester
+     * @param args Command Line Args
+     */
     public static void main(String[] args) {
         World.setSize(WORLD_SIZE_X, WORLD_SIZE_Y);
         World.setDelay(200);
@@ -25,6 +29,9 @@ public class Main {
         }
     }
 
+    /**
+     * Run some tests with the Robots
+     */
     public static void robotTests() {
         //TODO
     }

@@ -18,18 +18,21 @@ public interface ArrayTester {
     }
 
     /**
+     * Check if passed array fulfills requirements of array1
      * @param array1 Array, which got produced by produce1
      * @return true, if array follows specification refering to number dropped Coins; otherwise false
      */
     boolean test1(RepetitiveRobot[] array1);
 
     /**
+     * Check if passed array fulfills requirements of array3
      * @param array3 Array, which got produced by produce3
      * @return true, if array follows specification refering to x,y,z for FloorVector and position for RepetitiveRobotImpl; otherwise false
      */
     boolean test3(WithNaturalCoordinates[] array3);
 
     /**
+     * Check if passed array fulfills requirements of array4
      * @param array4 Array, which got produced by produce4
      * @return true, if array follows specification refering to x,y,z for FloorVector and position for RepetitiveRobotImpl; otherwise false
      */
